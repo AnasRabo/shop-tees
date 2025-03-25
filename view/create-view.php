@@ -8,6 +8,7 @@
 <body>
     <form action="">
         <label><input type="text">quantity</label>
+        <button type = "submit">envoyer !</button>
     </form>
 </body>
 </html>
