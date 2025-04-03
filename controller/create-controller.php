@@ -8,12 +8,14 @@ session_start(); ///Démarre une nouvelle session ou reprend une session existan
 $message = "";  /// on cree une variable qui vas contenir un message d'erreur.
 if (array_key_exists("quantity", $_POST) && /// on verifie si une clé quantity existe.
 	array_key_exists("product", $_POST)){   /// on verifie si une clé product existe.
-	$order = createOrder($_POST['product'], $_POST['quantity']);
-	if ($order) {
-		saveOrder($order); /// on verifie si la commande deja enregister respecte la condition.
-	} else {
-		$message = "impossible de créer la commande";   /// si ce n'est pas le cas alors on affiche un message d'erreur.
-	}
+		
+		try {
+			$order = createOrder($_POST['product'], $_POST['quantity']);
+			saveOrder($order);
+		} catch(Exception $e) {
+			$message = $e->getMessage();
+		}
+		
 
 }
 

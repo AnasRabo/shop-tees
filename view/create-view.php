@@ -17,7 +17,7 @@
         </select>  
             <button type = "submit">envoyer !</button><!-- création d'un button de type "submit" . -->
         <?php if (array_key_exists("order", $_SESSION)){ ?> <!-- Boucle : si les valeurs sont inscrite (si une commande existe deja) alors...  -->
-		    <p>Vous avez une commande en attente : <?php echo $_SESSION["order"]["quantity"]; ?> : <?php echo $_SESSION["order"]["product"]; ?></p>
+		    <p>Vous avez une du <?php  echo $orderByUser['createdate']->format('y-m-d')?> commande en attente : <?php echo $_SESSION["order"]["quantity"]; ?> : <?php echo $_SESSION["order"]["product"]; ?></p>
 	    <?php } ?> <!-- on affiche un message p et on incremente la valeurs de "quantity" et "product" du client-->
         <p><?php echo $message ?></p>
     </form>
