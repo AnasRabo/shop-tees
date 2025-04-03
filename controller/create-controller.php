@@ -5,17 +5,22 @@ require_once('../model/order-repository.php');
 
 session_start(); ///Démarre une nouvelle session ou reprend une session existante
 
-if(array_key_exists("quantity" , $_POST)&&  /// si "quantity" qui est dans POST contient une valeur.
-    array_key_exists("product", $_POST)){   /// si "product" qui est dans POST contient une valeur.
+$message = "";  /// on cree une variable qui vas contenir un message d'erreur.
+if (array_key_exists("quantity", $_POST) && /// on verifie si une clé quantity existe.
+	array_key_exists("product", $_POST)){   /// on verifie si une clé product existe.
+	$order = createOrder($_POST['product'], $_POST['quantity']);
+	if ($order) {
+		saveOrder($order); /// on verifie si la commande deja enregister respecte la condition.
+	} else {
+		$message = "impossible de créer la commande";   /// si ce n'est pas le cas alors on affiche un message d'erreur.
+	}
 
-        $order = createOrder($_POST['product'], $_POST['quantity']);
-        saveOrder($order);
 }
 
-$order = findOrderByUser(); /// appelle d'une fonction et stocke le résultat dans une variable.
+$orderByUser = findOrderByUser();
 require_once('../view/create-view.php');
 
-// le controleur : 
+// le controleur :
 
 // récupère les données de requête (GET, POST etc etc)
 // appelle le(s) répository pour récupérer les données (bdd, session)

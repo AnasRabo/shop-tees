@@ -8,13 +8,18 @@ function findOrderByUser() { /// creation d'une fontion qui check si des valeurs
 	}
 }
 
-function createOrder($product, $quantity) { /// creation d'une fontion qui crée une commande.
-	$order = [
-		"product" => $product,
-		"quantity" => $quantity
-	];
+function createOrder($product, $quantity) {
 
-	return $order;
+	if ($quantity < 0 || $quantity > 3) { /// condition qui cree une erreur si la quantité est pas respecter.
+		return false; /// si la condition n'est pas respercter alors returer la function false qui produira par la suite un message d'erreur.
+	} else { /// sinon si c'est respecter on recuper les valeurs du client.
+		$order = [
+			"product" => $product, 
+			"quantity" => $quantity
+		];
+	
+		return $order;
+	}
 }
 
 
