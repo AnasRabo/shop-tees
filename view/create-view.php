@@ -19,7 +19,7 @@
         <?php if (array_key_exists("order", $_SESSION)){ ?> <!-- Boucle : si les valeurs sont inscrite (si une commande existe deja) alors...  -->
 		    <p>Vous avez une commande en attente : <?php echo $_SESSION["order"]["quantity"]; ?> : <?php echo $_SESSION["order"]["product"]; ?></p>
 	    <?php } ?> <!-- on affiche un message p et on incremente la valeurs de "quantity" et "product" du client-->
-        <p><?php $message ?></p>
+        <p><?php echo $message ?></p>
     </form>
 </body>
 </html>
